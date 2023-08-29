@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Companies
+            Categories
         </h2>
     </x-slot>
 
@@ -12,14 +12,14 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-end">
                         <div >
-                            <x-primary-link class="bg-blue-700" href="{{ route('companies.create') }}">Add New
-                                Company</x-primary-link>
+                            <x-primary-link class="bg-blue-700" href="{{route('categories.create')}}">Add New
+                            Categories</x-primary-link>
                             
                         </div>
                         
                     </div>
                     <div>
-                        <form action="{{ route('companies.index') }}">
+                        <form action="{{ route('categories.index') }}">
                             <div class="flex justify-evenly">
                                 <div>
                                     <x-input-label for='Search By Name'>Search By Name Or Owner</x-input-label>
@@ -88,11 +88,11 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Owner
+                                                    Image
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Tex Number
+                                                    Category Name
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
@@ -105,37 +105,37 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($companies as $key => $company)
+                                            @forelse ($categories as $key => $category)
                                                 <tr class="bg-gray-100 border-b">
                                                     <td
                                                         class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                                                        {{ $key + $companies->firstItem() }}</td>
+                                                        {{ $key + $categories->firstItem() }}</td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $company->name }}
+                                                        {{ $category->name }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $company->owner }}
+                                                        <img src="{{asset('storage/'. $category->image)}}" /> 
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $company->tax_number }}
+                                                        {{$category->main_category->name ?? ' '}}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{$company->created_at->diffForHumans() }}
+                                                        {{$category->created_at->diffForHumans() }}
                                                         
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                         <div class="flex justify-evenly">
                                                             <div>
-                                                                <a href="{{ route('companies.edit', $company->id) }}"><i
+                                                                <a href="{{route('categories.edit', $category->id) }}"><i
                                                                         class="text-lg fa-solid fa-pen-to-square"></i></a>
                                                             </div>
                                                             <div>
-                                                                <form method="POST" action="{{ route('companies.delete', $company->id) }}">
+                                                                <form method="POST" action="{{ route('categories.destroy', $category->id) }}">
                                                                     @csrf
                                                                     @method('delete')
                                                                     <button type="submit">
@@ -159,7 +159,7 @@
                             </div>
                         </div>
                     </div>
-                    {{ $companies->links() }}
+                    {{ $categories->links() }}
                     {{-- {{ $companies->links('pagination::simple-tailwind') } --}}
                 </div>
             </div>

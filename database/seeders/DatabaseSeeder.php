@@ -21,16 +21,16 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class
         ]);
-        \App\Models\User::factory(500)->create();
-        \App\Models\Employee::factory(501)->create();
-        \App\Models\Company::factory(500)->create();
-        \App\Models\Manager::factory(500)->create();
-        \App\Models\Branch::factory(500)->create();
-        \App\Models\ClassRoom::factory(500)->create();
-        \App\Models\Vendor::factory(500)->create();
-        \App\Models\Course::factory(500)->create();
+        \App\Models\User::factory(100)->create();
+        \App\Models\Employee::factory(101)->create();
+        \App\Models\Company::factory(100)->create();
+        \App\Models\Manager::factory(100)->create();
+        \App\Models\Branch::factory(100)->create();
+        \App\Models\ClassRoom::factory(100)->create();
+        \App\Models\Vendor::factory(100)->create();
+        \App\Models\Course::factory(100)->create();
 
-        foreach (range(1, 500) as $num) {
+        foreach (range(1, 100) as $num) {
             Employee::find($num)->update(['user_id' => $num]);
             Manager::find($num)->update(['company_id' => $num]);
         }

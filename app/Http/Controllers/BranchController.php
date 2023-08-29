@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Branch;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BranchController extends Controller
 {
@@ -61,7 +63,16 @@ class BranchController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'company_id' => 'required',
+        ],[
+            'company_id' => 'company name is required'
+        ]);
+        $branch = Branch::findOrFail($id);
+        $branch->update($request->except('_token'));
+        return redirect()->route('branches.index')->with('added', ' Branch updated');
     }
 
     /**
@@ -69,6 +80,12 @@ class BranchController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try{
+            Branch::destroy($id);
+            return redirect()->route('branches.index')->with(['added', 'Branch deleted']);
+        } catch(Exception $e){
+            Log::info($e->getMessage());
+            return redirect()->route('branches.index')->with(['added', $e->getMessage()]);
+        }
     }
 }

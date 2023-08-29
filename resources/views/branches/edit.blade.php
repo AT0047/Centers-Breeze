@@ -11,7 +11,16 @@
                 <div class="p-6 text-gray-900">
                     <fieldset class="p-5 border rounded-xl">
                         <legend class="p-2 text-lg font-bold">Edit Branch</legend>
-                        <form method="POST" action="{{ route('companies.update', $branch->id) }}">
+                        @if ($errors->any())
+                            <div>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-red-600">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <form method="POST" action="{{ route('branches.update', $branch->id) }}">
                             @method('patch')
                             @csrf
                             <div class="grid w-full grid-cols-2 gap-4">
@@ -37,10 +46,7 @@
                                     <select name="company_id">
                                         <option disabled selected value="">Select Company</option>
                                         @foreach (App\Models\Company::orderBy('name')->pluck('name', 'id')->toArray() as $id => $name)
-                                            {{-- <option @selected(old('company_id') == $id) value="{{ $id }}"> --}}
-                                            {{-- <option @if() value="{{ $id }}"> --}}
-                                            {{-- <option value="{{ $id }}"> --}}
-                                                {{ $name }}</option>
+                                            <option value="{{$id}}" {{$id == $branch->company_id ? 'selected' : ''}}>{{$name}}</option>
                                         @endforeach
                                     </select>
                                     @error('company_id')

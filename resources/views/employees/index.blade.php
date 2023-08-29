@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Companies
+            Employees
         </h2>
     </x-slot>
 
@@ -12,24 +12,24 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-end">
                         <div >
-                            <x-primary-link class="bg-blue-700" href="{{ route('companies.create') }}">Add New
-                                Company</x-primary-link>
+                            <x-primary-link class="bg-blue-700" href="{{ route('employees.create') }}">Add New
+                            Employee</x-primary-link>
                             
                         </div>
                         
                     </div>
                     <div>
-                        <form action="{{ route('companies.index') }}">
+                        <!-- <form action="{{ route('employees.index') }}">
                             <div class="flex justify-evenly">
                                 <div>
-                                    <x-input-label for='Search By Name'>Search By Name Or Owner</x-input-label>
+                                    <x-input-label for='Search By Name'>Search By Name</x-input-label>
                                     <x-text-input name='search'></x-text-input>
                                 </div>
                             <div class="mt-5">
                                     <x-primary-button type='submit'>Search</x-primary-button>
                             </div>
                                 </div>
-                        </form>
+                        </form> -->
                     </div>
                     <!-- component -->
                     <div class="p-5">
@@ -88,11 +88,15 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Owner
+                                                    job_title
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Tex Number
+                                                    salary
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-4 text-sm font-medium text-left text-gray-900">
+                                                    hire_date
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
@@ -105,37 +109,42 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($companies as $key => $company)
+                                            @forelse ($employees as $key => $employee)
                                                 <tr class="bg-gray-100 border-b">
                                                     <td
                                                         class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                                                        {{ $key + $companies->firstItem() }}</td>
+                                                        {{ $key + $employees->firstItem() }}</td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $company->name }}
+                                                        {{ $employee->user->name }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $company->owner }}
+                                                        {{ $employee->job_title }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $company->tax_number }}
+                                                        {{ $employee->salary }} $
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{$company->created_at->diffForHumans() }}
+                                                        {{$employee->hire_date}}
+                                                        
+                                                    </td>
+                                                    <td
+                                                        class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
+                                                        {{$employee->created_at->diffForHumans() }}
                                                         
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                         <div class="flex justify-evenly">
                                                             <div>
-                                                                <a href="{{ route('companies.edit', $company->id) }}"><i
+                                                                <a href="{{-- route('employees.edit', $employee->id) --}}"><i
                                                                         class="text-lg fa-solid fa-pen-to-square"></i></a>
                                                             </div>
                                                             <div>
-                                                                <form method="POST" action="{{ route('companies.delete', $company->id) }}">
+                                                                <form method="POST" action="{{-- route('employees.destroy', $employee->id) --}}">
                                                                     @csrf
                                                                     @method('delete')
                                                                     <button type="submit">
@@ -159,8 +168,8 @@
                             </div>
                         </div>
                     </div>
-                    {{ $companies->links() }}
-                    {{-- {{ $companies->links('pagination::simple-tailwind') } --}}
+                    {{ $employees->links() }}
+                    {{-- {{ $employees->links('pagination::simple-tailwind') } --}}
                 </div>
             </div>
         </div>
