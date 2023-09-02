@@ -6,6 +6,8 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,6 +74,10 @@ Route::middleware('auth')->group(function () {
         Route::patch('/update/{id}',[EmployeeController::class, 'update'])->name('update');
         Route::delete('/destroy/{id}',[EmployeeController::class, 'destroy'])->name('destroy');
     });
+    
+    Route::resource('vendors', VendorController::class);
+
+    Route::resource('users', UserController::class);
 });
 
 require __DIR__ . '/auth.php';

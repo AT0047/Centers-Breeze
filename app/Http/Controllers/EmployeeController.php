@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -10,7 +11,9 @@ use Illuminate\Support\Facades\Log;
 class EmployeeController extends Controller
 {
     public function index(){
-        $employees =Employee::orderBy('created_at', 'desc')->paginate(10);
+        // $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        // $employees = User::where('type', 'instractor')->employee()->get();
+        $employees =  Employee::orderBy('created_at', 'desc')->paginate(10);
         return view('employees.index', compact('employees'));
     } 
     
@@ -23,12 +26,12 @@ class EmployeeController extends Controller
             'name' => 'required|string',
             'mobile' => 'required|numeric',
         ]);
-        $Employee = new Employee();
-        $Employee->name = $request->name;
-        $Employee->mobile = $request->mobile;
-        $Employee->company_id = $request->company_id;
-        $Employee->save();
-        return redirect()->route('Employees.index')->with(['added','New Employee Added']);
+        $employee = new Employee();
+        $employee->name = $request->name;
+        $employee->mobile = $request->mobile;
+        $employee->company_id = $request->company_id;
+        $employee->save();
+        return redirect()->route('employees.index')->with(['added','New Employee Added']);
     }
 
     public function edit($id){
@@ -40,21 +43,21 @@ class EmployeeController extends Controller
         $request->validate([
             'name' => 'required|string',
         ]);
-        $Employee = Employee::findOrFail($id);
-        $Employee->name = $request->name;
-        $Employee->mobile = $request->mobile;
-        $Employee->company_id = $request->company_id;
-        $Employee->save();
-        return redirect()->route('Employees.index')->with(['added','New Employee Updated']);
+        $employee = Employee::findOrFail($id);
+        $employee->name = $request->name;
+        $employee->mobile = $request->mobile;
+        $employee->company_id = $request->company_id;
+        $employee->save();
+        return redirect()->route('employees.index')->with(['added','New Employee Updated']);
     }
 
     public function destroy($id){
         try {
             Employee::destroy($id);
-            return redirect()->route('Employees.index')->with('added', 'Employee Deleted');
+            return redirect()->route('employees.index')->with('added', 'Employee Deleted');
         } catch (Exception  $e) {
             Log::info($e->getMessage());
-            return redirect()->route('Employees.index');
+            return redirect()->route('employees.index');
         }
     }
 }

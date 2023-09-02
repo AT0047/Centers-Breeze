@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            managers
+            Users
         </h2>
     </x-slot>
 
@@ -10,26 +10,26 @@
 
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="flex justify-end">
-                        <!-- <div >
-                            <x-primary-link class="bg-blue-700" href="{{ route('managers.create') }}">Add New
-                                Manager</x-primary-link>
+                    <div class="flex justify-end ">
+                        <div >
+                            <x-primary-link class="bg-blue-700" href="{{ route('users.create')}}">Add New
+                                User</x-primary-link>
                             
-                        </div> -->
+                        </div>
                         
                     </div>
                     <div>
-                        <!-- <form action="{{ route('managers.index') }}">
+                        <form action="{{ route('users.index') }}">
                             <div class="flex justify-evenly">
                                 <div>
-                                    <x-input-label for='Search By Name'>Search By Name</x-input-label>
+                                    <x-input-label for='Search By Name'>Search By Name Or Owner</x-input-label>
                                     <x-text-input name='search'></x-text-input>
                                 </div>
-                            <div class="mt-5">
-                                    <x-primary-button type='submit'>Search</x-primary-button>
-                            </div>
+                                <div class="mt-5">
+                                        <x-primary-button type='submit'>Search</x-primary-button>
                                 </div>
-                        </form> -->
+                            </div>
+                        </form>
                     </div>
                     <!-- component -->
                     <div class="p-5">
@@ -88,11 +88,15 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Mobile
+                                                    Email
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Company Name
+                                                    Role
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-4 text-sm font-medium text-left text-gray-900">
+                                                    Email Verified At
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
@@ -105,37 +109,41 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($managers as $key => $manager)
+                                            @forelse ($users as $key => $user)
                                                 <tr class="bg-gray-100 border-b">
                                                     <td
                                                         class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                                                        {{ $key + $managers->firstItem() }}</td>
+                                                        {{ $key + $users->firstItem() }}</td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $manager->name }}
+                                                        {{ $user->name }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $manager->mobile }}
+                                                        {{ $user->email }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $manager->company->name }}
+                                                        {{ $user->type }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{$manager->created_at->diffForHumans() }}
+                                                        {{ $user->email_verified_at}}
+                                                    </td>
+                                                    <td
+                                                        class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
+                                                        {{$user->created_at->diffForHumans() }}
                                                         
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                         <div class="flex justify-evenly">
                                                             <div>
-                                                                <a href="{{ route('managers.edit', $manager->id) }}"><i
+                                                                <a href="{{ route('users.edit', $user->id) }}"><i
                                                                         class="text-lg fa-solid fa-pen-to-square"></i></a>
                                                             </div>
                                                             <div>
-                                                                <form method="POST" action="{{ route('managers.destroy', $manager->id) }}">
+                                                                <form method="POST" action="{{ route('users.destroy', $user->id) }}">
                                                                     @csrf
                                                                     @method('delete')
                                                                     <button type="submit">
@@ -159,8 +167,8 @@
                             </div>
                         </div>
                     </div>
-                    {{ $managers->links() }}
-                    {{-- {{ $managers->links('pagination::simple-tailwind') } --}}
+                    {{ $users->links() }}
+                    {{-- {{ $users->links('pagination::simple-tailwind') } --}}
                 </div>
             </div>
         </div>
