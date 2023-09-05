@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Log;
 class EmployeeController extends Controller
 {
     public function index(){
-        // $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
+        // $employees = User::where('type', 'instractor')->paginate(10);
         // $employees = User::where('type', 'instractor')->employee()->get();
-        $employees =  Employee::orderBy('created_at', 'desc')->paginate(10);
-        return view('employees.index', compact('employees'));
+        // $employees =  Employee::with('user')->where('type', 'instractor')->paginate(10);
+        $insta = User::where('type', 'instractor')->get();
+        return view('employees.index', compact('employees','insta'));
     } 
     
     public function create(){
-        return view('Employees.create');
+        return view('employees.create');
     }
 
     public function store(Request $request){
@@ -36,7 +38,7 @@ class EmployeeController extends Controller
 
     public function edit($id){
         $Employee = Employee::findorFail($id);
-        return view('Employees.edit', compact('Employee'));
+        return view('employees.edit', compact('Employee'));
     }
 
     public function update(Request $request, $id){

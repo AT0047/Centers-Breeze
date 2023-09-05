@@ -88,6 +88,10 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
+                                                    role
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-4 text-sm font-medium text-left text-gray-900">
                                                     job_title
                                                 </th>
                                                 <th scope="col"
@@ -117,6 +121,10 @@
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                         {{ $employee->user->name }}
+                                                    </td>
+                                                    <td
+                                                        class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
+                                                        {{ $employee->user->type }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
@@ -161,7 +169,6 @@
                                                     No Result Yet
                                                 </tr>
                                             @endforelse
-
                                         </tbody>
                                     </table>
                                 </div>
