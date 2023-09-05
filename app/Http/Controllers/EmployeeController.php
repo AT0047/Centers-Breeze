@@ -14,8 +14,8 @@ class EmployeeController extends Controller
         $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
         // $employees = User::where('type', 'instractor')->paginate(10);
         // $employees = User::where('type', 'instractor')->employee()->get();
-        // $employees =  Employee::with('user')->where('type', 'instractor')->paginate(10);
         $insta = User::where('type', 'instractor')->get();
+        // $employees =  Employee::with('user')->where('type', 'instractor')->paginate(10);
         return view('employees.index', compact('employees','insta'));
     } 
     
