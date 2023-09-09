@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Companies
+        ({{ App\Models\Company::count() }}) {{ trans_choice('translate.Companies', App\Models\Company::count()) }}
         </h2>
     </x-slot>
 
@@ -12,8 +12,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-end">
                         <div >
-                            <x-primary-link class="bg-blue-700" href="{{ route('companies.create') }}">Add New
-                                Company</x-primary-link>
+                            <x-primary-link class="bg-blue-700" href="{{ route('companies.create') }}">{{__('translate.Add New Company')}}</x-primary-link>
                             
                         </div>
                         
@@ -22,11 +21,11 @@
                         <form action="{{ route('companies.index') }}">
                             <div class="flex justify-evenly">
                                 <div>
-                                    <x-input-label for='Search By Name'>Search By Name Or Owner</x-input-label>
+                                    <x-input-label for='Search By Name'>{{__('translate.Search By Name Or Owner')}}</x-input-label>
                                     <x-text-input name='search'></x-text-input>
                                 </div>
                             <div class="mt-5">
-                                    <x-primary-button type='submit'>Search</x-primary-button>
+                                    <x-primary-button type='submit'>{{__('translate.Search')}}</x-primary-button>
                             </div>
                                 </div>
                         </form>
@@ -71,7 +70,7 @@
                         @endif
                     </div>
                     <!-- component -->
-                    <div class="flex flex-col">
+                    <div class="flex flex-col ">
                         <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
                             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                                 <div class="overflow-hidden">
@@ -84,23 +83,23 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Name
+                                                    {{__('translate.Name')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Owner
+                                                    {{__('translate.Owner')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Tex Number
+                                                    {{__('translate.Tex Number')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Created At
+                                                    {{__('translate.Created At')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Actions
+                                                    {{__('translate.Actions')}}
                                                 </th>
                                             </tr>
                                         </thead>

@@ -7,50 +7,50 @@
                 <div class="flex items-center shrink-0">
                     <a href="{{ route('dashboard') }}">
                         {{-- <x-application-logo class="block w-auto text-gray-800 fill-current h-9" /> --}}
-                        <p class="text-lg font-bold text-gray-800">Centers</p>
+                        <p class="text-lg font-bold text-gray-800">{{__('translate.Centers')}}</p>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('translate.Dashboard') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('companies.index')" :active="request()->routeIs('companies.*')">
-                        Companies
+                    {{ __('translate.Companies_t') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.*')">
-                        Branches
+                    {{ __('translate.Branches') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.*')">
-                        Managers
+                    {{ __('translate.Managers') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.*')">
-                        Employees
+                    {{ __('translate.Employees') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                        Users
+                    {{ __('translate.Users') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-                        Categories
+                    {{ __('translate.Categories') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('vendors.index')" :active="request()->routeIs('vendors.*')">
-                        Vendors
+                    {{ __('translate.Vendors') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -75,6 +75,9 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        <x-dropdown-link :href="route('lang',__('translate.c_lang'))">
+                            {{ __('translate.cc_lang') }}
+                        </x-dropdown-link>
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -113,42 +116,42 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            {{ __('translate.Dashboard') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('companies.index')" :active="request()->routeIs('companies.*')">
-                companies
+            {{ __('translate.Companies_t') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('branches.index')" :active="request()->routeIs('branches.*')">
-                branches
+            {{ __('translate.Branches') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('managers.index')" :active="request()->routeIs('managers.*')">
-                Managers
+            {{ __('translate.Managers') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('employees.index')" :active="request()->routeIs('employees.*')">
-                Employees
+            {{ __('translate.Employees') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
-                Users
+            {{ __('translate.Users') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('categories.index')" :active="request()->routeIs('categories.*')">
-                Categories
+            {{ __('translate.Categories') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('vendors.index')" :active="request()->routeIs('vendors.*')">
-                Vendors
+            {{ __('translate.Vendors') }}
             </x-responsive-nav-link>
         </div>
 
