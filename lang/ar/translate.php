@@ -23,10 +23,10 @@ return [
     'Branches_t' => 'الفروع',
     'Users' => 'المستخدمين',
     'Categories' => 'الفئات',
-    'Managers_t'=>'المديرين',
-    'Employees_t'=>'الموظفين',
+    'Managers_t' => 'المديرين',
+    'Employees_t' => 'الموظفين',
     'Vendors' => 'الموردين',
-    'Classrooms_t'=>'القاعات',
+    'Classrooms_t' => 'القاعات',
 
 
 
@@ -74,5 +74,16 @@ return [
     'Edit Employee' => 'تعديل بيانات الموظف',
     'Employee Deleted' => 'تم فصل الموظف',
     'Employee updated' => 'تم التعديل ',
+
+
+    // Classrooms
+    'Classrooms' => '{1} قاعة |{2} قاعاتن|[3,10] قاعات|[11,*] قاعة',
+    'Add New Classroom' => 'تحديد قاعة جديدة',
+    'configration' =>'التجهيزات',
+    'capacity' => 'السعة',
+    'branch name' => 'اسم الفرع',
+    'Edit Classroom' => 'تعديل بيانات القاعة',
+    'Classroom Deleted' => 'تم الغاء القاعة',
+    'Classroom updated' => 'تم التعديل ',
 
 ];

@@ -13,7 +13,8 @@ class CompanyController extends Controller
     {
         $companies = Company::query();
         if ($request->has('search')) {
-            $companies->where('name', 'like', '%' . $request->search . '%')->orWhere('owner', 'like', '%' . $request->search . '%');
+            $companies->where('name', 'like', '%' . $request->search . '%')
+            ->orWhere('owner', 'like', '%' . $request->search . '%');
         }
         return view('companies.index', ['companies' => $companies->orderBy('created_at', 'desc')->orderBy('name')->paginate(10)]);
         // return view('companies.index', ['companies' => $companies->orderBy('name')->simplePaginate(10)]);

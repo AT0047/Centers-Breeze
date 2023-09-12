@@ -10,23 +10,23 @@ return [
     'Search' => 'Search',
     'No Result Yet' => 'No Result Yet',
     'Save' => 'Save',
-    'c_lang'=>'ar',
-    'cc_lang'=>'اللغة العربية',
+    'c_lang' => 'ar',
+    'cc_lang' => 'اللغة العربية',
     'Actions' => 'Actions',
     'Created At' => 'Created At',
 
     // NavBar
-    'dir'=>'ltr',
-    'Centers'=>'Centers',
-    'Dashboard'=>'Dashboard',
-    'Companies_t'=>'Companies',
-    'Branches_t'=>'Branches',
+    'dir' => 'ltr',
+    'Centers' => 'Centers',
+    'Dashboard' => 'Dashboard',
+    'Companies_t' => 'Companies',
+    'Branches_t' => 'Branches',
     'Users' => 'Users',
-    'Managers_t'=>'Managers',
-    'Employees_t'=>'Employees',
+    'Managers_t' => 'Managers',
+    'Employees_t' => 'Employees',
     'Categories' => 'Categories',
-    'Vendors'=>'Vendors',
-    'Classrooms'=>'Classrooms',
+    'Vendors' => 'Vendors',
+    'Classrooms_t' => 'Classrooms',
 
 
 
@@ -77,5 +77,16 @@ return [
     'New Employee Added' => 'New Employee Added',
     'Employee Deleted' => 'Employee Deleted',
     'Employee updated' => 'Employee Updated',
-    
+
+
+    // Classrooms
+    'Classrooms' => '{1}Classroom|[2,*] Classroom',
+    'Add New Classroom' => 'Add New Classroom',
+    'configration' => 'configration',
+    'capacity' => 'capacity',
+    'branch name' => 'branch name',
+    'Edit Classroom' => 'Edit Classroom',
+    'Classroom Deleted' => 'Classroom Deleted',
+    'Classroom updated' => 'Classroom updated',
+
 ];

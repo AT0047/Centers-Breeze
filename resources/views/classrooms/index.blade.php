@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        ({{ App\Models\ClassRoom::count() }}) {{ trans_choice('translate.Branches', App\Models\ClassRoom::count()) }}
+        ({{ App\Models\ClassRoom::count() }}) {{ trans_choice('translate.Classrooms', App\Models\ClassRoom::count()) }}
         </h2>
     </x-slot>
 
@@ -12,18 +12,18 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex  justify-evenly">
                         <form action="{{ route('classrooms.index') }}">
-                            <div class="flex justify-evenly">
-                                <div class="flex ">
+                            <div class="flex justify-between">
+                                <div class="flex">
                                     <x-input-label class="mt-3" for='Search By Name'>{{__('translate.Search By Name Or Owner')}}</x-input-label>
                                     <x-text-input name='search'></x-text-input>
                                 </div>
-                            <div class="flex  ">
-                                    <x-primary-button type='submit'>{{__('translate.Search')}}</x-primary-button>
-                            </div>
+                                <div class="flex">
+                                        <x-primary-button type='submit'>{{__('translate.Search')}}</x-primary-button>
                                 </div>
+                            </div>
                         </form>
-                        <div class="flex  justify-end">
-                            <x-primary-link class="bg-blue-700" href="{{-- route('classrooms.create') --}}">{{__('translate.Add New Branches')}}</x-primary-link>
+                        <div class="flex justify-between">
+                            <x-primary-link class="bg-blue-700" href="{{-- route('classrooms.create') --}}">{{__('translate.Add New Classroom')}}</x-primary-link>
                         </div>
                     </div>
                     <div>
@@ -88,7 +88,7 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    {{__('translate.configration ')}}
+                                                    {{__('translate.configration')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
