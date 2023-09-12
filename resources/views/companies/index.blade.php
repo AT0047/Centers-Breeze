@@ -46,7 +46,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex-initial max-w-full text-xl font-normal">
-                                        <div class="py-2">This is a success messsage
+                                        <div class="py-2">{{__('translate.This is a success messsage')}}
                                             <div class="text-sm font-base">
                                                 {{ session('added') }}
                                             </div>
@@ -91,7 +91,7 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    {{__('translate.Tex Number')}}
+                                                    {{__('translate.Tax Number')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">

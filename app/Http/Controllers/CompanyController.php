@@ -45,7 +45,7 @@ class CompanyController extends Controller
         // session()->forget('added');
         // session()->flash('added', 'New Company Added');
         // return redirect()->to('/companies');
-        return redirect()->route('companies.index')->with('added', 'New Company Added');
+        return redirect()->route('companies.index')->with('added', __("translate.New Company Added"));
     }
     public function edit($id)
     {
@@ -63,13 +63,13 @@ class CompanyController extends Controller
         ]);
         $company = Company::findOrFail($id);
         $company->update($request->except('_token'));
-        return redirect()->route('companies.index')->with('added', 'Company updated');
+        return redirect()->route('companies.index')->with('added', __("translate.Company updated "));
     }
     public function delete($id)
     {
         try {
             Company::destroy($id);
-            return redirect()->route('companies.index')->with('added', 'Company Deleted');
+            return redirect()->route('companies.index')->with('added', __("translate.Company Deleted "));
         } catch (Exception  $e) {
             Log::info($e->getMessage());
             return redirect()->route('companies.index');

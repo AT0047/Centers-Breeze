@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            managers
+        ({{ App\Models\Manager::count() }}) {{ trans_choice('translate.Managers', App\Models\Manager::count()) }}
         </h2>
     </x-slot>
 
@@ -47,7 +47,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex-initial max-w-full text-xl font-normal">
-                                        <div class="py-2">This is a success messsage
+                                        <div class="py-2">{{__('translate.This is a success messsage')}}
                                             <div class="text-sm font-base">
                                                 {{ session('added') }}
                                             </div>
@@ -84,23 +84,23 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Name
+                                                    {{__('translate.Name')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Mobile
+                                                    {{__('translate.mobile')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Company Name
+                                                    {{__('translate.company_name')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Created At
+                                                    {{__('translate.Created At')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Actions
+                                                    {{__('translate.Actions')}}
                                                 </th>
                                             </tr>
                                         </thead>
@@ -149,7 +149,7 @@
                                                 </tr>
                                             @empty
                                                 <tr colspan='4' class="bg-gray-100 border-b">
-                                                    No Result Yet
+                                                {{__('translate.No Result Yet')}}
                                                 </tr>
                                             @endforelse
 

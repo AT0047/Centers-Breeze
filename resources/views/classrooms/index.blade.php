@@ -1,8 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        ({{ App\Models\Employee::count() }}) {{ trans_choice('translate.Employees', App\Models\Employee::count()) }}
-
+        ({{ App\Models\ClassRoom::count() }}) {{ trans_choice('translate.Branches', App\Models\ClassRoom::count()) }}
         </h2>
     </x-slot>
 
@@ -11,26 +10,24 @@
 
             <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <div class="flex justify-end">
-                        <div >
-                            <x-primary-link class="bg-blue-700" href="{{-- route('employees.create') --}}">Add New
-                            Employee</x-primary-link>
-                            
-                        </div>
-                        
-                    </div>
-                    <div>
-                        <!-- <form action="{{ route('employees.index') }}">
+                    <div class="flex  justify-evenly">
+                        <form action="{{ route('classrooms.index') }}">
                             <div class="flex justify-evenly">
-                                <div>
-                                    <x-input-label for='Search By Name'>Search By Name</x-input-label>
+                                <div class="flex ">
+                                    <x-input-label class="mt-3" for='Search By Name'>{{__('translate.Search By Name Or Owner')}}</x-input-label>
                                     <x-text-input name='search'></x-text-input>
                                 </div>
-                            <div class="mt-5">
-                                    <x-primary-button type='submit'>Search</x-primary-button>
+                            <div class="flex  ">
+                                    <x-primary-button type='submit'>{{__('translate.Search')}}</x-primary-button>
                             </div>
                                 </div>
-                        </form> -->
+                        </form>
+                        <div class="flex  justify-end">
+                            <x-primary-link class="bg-blue-700" href="{{-- route('classrooms.create') --}}">{{__('translate.Add New Branches')}}</x-primary-link>
+                        </div>
+                    </div>
+                    <div>
+
                     </div>
                     <!-- component -->
                     <div class="p-5">
@@ -70,7 +67,9 @@
                                 </div>
                             </div>
                         @endif
+
                     </div>
+
                     <!-- component -->
                     <div class="flex flex-col">
                         <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
@@ -89,19 +88,15 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    {{__('translate.Role')}}
+                                                    {{__('translate.configration ')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    {{__('translate.Job Title')}}
+                                                    {{__('translate.capacity')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    {{__('translate.Salary')}}
-                                                </th>
-                                                <th scope="col"
-                                                    class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    {{__('translate.Hire Date')}}
+                                                    {{__('translate.branch name')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
@@ -114,70 +109,67 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse ($employees as $key => $employee)
+                                            @forelse ($classrooms as $key => $classroom)
                                                 <tr class="bg-gray-100 border-b">
                                                     <td
                                                         class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                                                        {{ $key + $employees->firstItem() }}</td>
+                                                        {{ $key + $classrooms->firstItem() }}</td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $employee->user->name }}
+                                                        {{ $classroom->name }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $employee->user->type }}
+                                                        {{ $classroom->configration  }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $employee->job_title }}
+                                                        {{ $classroom->capacity }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{ $employee->salary }} $
+                                                        {{ $classroom->branch->name }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{$employee->hire_date}}
-                                                        
-                                                    </td>
-                                                    <td
-                                                        class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                                        {{$employee->created_at->diffForHumans() }}
-                                                        
+                                                        {{$classroom->created_at->diffForHumans() }}
                                                     </td>
                                                     <td
                                                         class="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                                         <div class="flex justify-evenly">
                                                             <div>
-                                                                <a href="{{ route('employees.edit', $employee->id)}}"><i
+                                                                <a href="{{-- route('branches.edit', $classroom->id) --}}"><i
                                                                         class="text-lg fa-solid fa-pen-to-square"></i></a>
                                                             </div>
                                                             <div>
-                                                                <form method="POST" action="{{ route('employees.destroy', $employee->id)}}">
+                                                                <form method="POST" action="{{-- route('branches.destroy', $classroom->id) --}}">
                                                                     @csrf
-                                                                    @method('delete')
+                                                                    @method('DELETE')
                                                                     <button type="submit">
                                                                         <i class="text-lg fa-solid fa-trash"
                                                                             style="color: #fa0000;"></i>
                                                                     </button>
                                                                 </form>
+
+
                                                             </div>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr colspan='4' class="bg-gray-100 border-b">
-                                                    {{__('translate.No Result Yet')}}
+                                                {{__('translate.No Result Yet')}}
                                                 </tr>
                                             @endforelse
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{ $employees->links() }}
-                    {{-- {{ $employees->links('pagination::simple-tailwind') } --}}
+                    {{ $classrooms->links() }}
+                    {{-- {{ $classrooms->links('pagination::simple-tailwind') } --}}
                 </div>
             </div>
         </div>

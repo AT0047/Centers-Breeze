@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('configration', 2000);
             $table->integer('capacity')->default(15);
-            $table->foreignId('branch_id')->constrained();
+            $table->foreignId('branch_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

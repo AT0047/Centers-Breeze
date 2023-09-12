@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Branches
+        ({{ App\Models\Branch::count() }}) {{ trans_choice('translate.Branches', App\Models\Branch::count()) }}
         </h2>
     </x-slot>
 
@@ -12,8 +12,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="flex justify-end">
                         <div>
-                            <x-primary-link class="bg-blue-700" href="{{ route('branches.create') }}">Add New
-                                Branch</x-primary-link>
+                            <x-primary-link class="bg-blue-700" href="{{ route('branches.create') }}">{{__('translate.Add New Branches')}}</x-primary-link>
                         </div>
                     </div>
                     <!-- component -->
@@ -32,7 +31,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex-initial max-w-full text-xl font-normal">
-                                        <div class="py-2">This is a success messsage
+                                        <div class="py-2">{{__('translate.This is a success messsage')}}
                                             <div class="text-sm font-base">
                                                 {{ session('added') }}
                                             </div>
@@ -71,23 +70,23 @@
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Name
+                                                    {{__('translate.Name')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    location
+                                                    {{__('translate.location')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    company
+                                                    {{__('translate.company')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Created At
+                                                    {{__('translate.Created At')}}
                                                 </th>
                                                 <th scope="col"
                                                     class="px-6 py-4 text-sm font-medium text-left text-gray-900">
-                                                    Actions
+                                                    {{__('translate.Actions')}}
                                                 </th>
                                             </tr>
                                         </thead>
@@ -137,7 +136,7 @@
                                                 </tr>
                                             @empty
                                                 <tr colspan='4' class="bg-gray-100 border-b">
-                                                    No Result Yet
+                                                {{__('translate.No Result Yet')}}
                                                 </tr>
                                             @endforelse
 

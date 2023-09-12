@@ -38,7 +38,7 @@ class BranchController extends Controller
             'company_id' => 'required',
         ]);
         Branch::create($request->except('_token'));
-        return redirect()->route('branches.index')->with('added', 'New Branch Added');
+        return redirect()->route('branches.index')->with('added',__('translate.New Branch Added'));
     }
 
     /**
@@ -72,7 +72,7 @@ class BranchController extends Controller
         ]);
         $branch = Branch::findOrFail($id);
         $branch->update($request->except('_token'));
-        return redirect()->route('branches.index')->with('added', ' Branch updated');
+        return redirect()->route('branches.index')->with('added', __('translate.Branch updated'));
     }
 
     /**
@@ -82,7 +82,7 @@ class BranchController extends Controller
     {
         try{
             Branch::destroy($id);
-            return redirect()->route('branches.index')->with(['added', 'Branch deleted']);
+            return redirect()->route('branches.index')->with(['added', __('translate.Branch Deleted')]);
         } catch(Exception $e){
             Log::info($e->getMessage());
             return redirect()->route('branches.index')->with(['added', $e->getMessage()]);

@@ -14,8 +14,10 @@ class EmployeeController extends Controller
         $employees = Employee::orderBy('created_at', 'desc')->paginate(10);
         // $employees = User::where('type', 'instractor')->paginate(10);
         // $employees = User::where('type', 'instractor')->employee()->get();
-        $insta = User::where('type', 'instractor')->get();
         // $employees =  Employee::with('user')->where('type', 'instractor')->paginate(10);
+        // $insta = User::whereHas('type', function ($subquery){
+        //     $subquery->where('name', 'instractor');
+        // })->get();
         return view('employees.index', compact('employees','insta'));
     } 
     
@@ -25,38 +27,41 @@ class EmployeeController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => 'required|string',
-            'mobile' => 'required|numeric',
+            'job_title' => 'required|string',
+            'salary' => 'required|numeric',
+            'hire_date' => 'required|date',
         ]);
         $employee = new Employee();
-        $employee->name = $request->name;
-        $employee->mobile = $request->mobile;
-        $employee->company_id = $request->company_id;
+        $employee->job_title = $request->job_title;
+        $employee->salary = $request->salary;
+        $employee->hire_date = $request->hire_date;
         $employee->save();
-        return redirect()->route('employees.index')->with(['added','New Employee Added']);
+        return redirect()->route('employees.index')->with(['added',__('translate.Add New Employee')]);
     }
 
     public function edit($id){
-        $Employee = Employee::findorFail($id);
-        return view('employees.edit', compact('Employee'));
+        $employee = Employee::findorFail($id);
+        return view('employees.edit', compact('employee'));
     }
 
     public function update(Request $request, $id){
         $request->validate([
-            'name' => 'required|string',
+            'job_title' => 'required|string',
+            'salary' => 'required|numeric',
+            'hire_date' => 'required|date',
         ]);
         $employee = Employee::findOrFail($id);
-        $employee->name = $request->name;
-        $employee->mobile = $request->mobile;
-        $employee->company_id = $request->company_id;
+        $employee->job_title = $request->job_title;
+        $employee->salary = $request->salary;
+        $employee->hire_date = $request->hire_date;
         $employee->save();
-        return redirect()->route('employees.index')->with(['added','New Employee Updated']);
+        return redirect()->route('employees.index')->with(['added', __('translate.Employee updated')]);
     }
 
     public function destroy($id){
         try {
             Employee::destroy($id);
-            return redirect()->route('employees.index')->with('added', 'Employee Deleted');
+            return redirect()->route('employees.index')->with('added', __('translate.Employee Deleted'));
         } catch (Exception  $e) {
             Log::info($e->getMessage());
             return redirect()->route('employees.index');

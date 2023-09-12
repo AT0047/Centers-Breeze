@@ -28,7 +28,7 @@ class ManagerController extends Controller
         $manager->mobile = $request->mobile;
         $manager->company_id = $request->company_id;
         $manager->save();
-        return redirect()->route('managers.index')->with(['added','New Manager Added']);
+        return redirect()->route('managers.index')->with('added','New Manager Added');
     }
 
     public function edit($id){
@@ -45,13 +45,13 @@ class ManagerController extends Controller
         $manager->mobile = $request->mobile;
         $manager->company_id = $request->company_id;
         $manager->save();
-        return redirect()->route('managers.index')->with(['added','New Manager Updated']);
+        return redirect()->route('managers.index')->with('added', __('translate.New Manager Added'));
     }
 
     public function destroy($id){
         try {
             Manager::destroy($id);
-            return redirect()->route('managers.index')->with('added', 'Manager Deleted');
+            return redirect()->route('managers.index')->with('added', __('translate.Manager Deleted'));
         } catch (Exception  $e) {
             Log::info($e->getMessage());
             return redirect()->route('managers.index');

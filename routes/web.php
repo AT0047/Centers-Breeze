@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ManagerController;
@@ -88,6 +89,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('vendors', VendorController::class);
 
     Route::resource('users', UserController::class);
+
+    Route::resource('classrooms', ClassRoomController::class);
 });
 
 require __DIR__ . '/auth.php';
